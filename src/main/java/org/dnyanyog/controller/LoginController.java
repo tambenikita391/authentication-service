@@ -18,7 +18,7 @@ public class LoginController {
 		return service.validateUser(request);
 	}
 	
-	@PostMapping("/auth/user")
+	@PostMapping("/public/auth/user")
 	public LoginResponse addUser(@RequestBody LoginRequest request) throws Exception {
 		return service.addUser(request);
 

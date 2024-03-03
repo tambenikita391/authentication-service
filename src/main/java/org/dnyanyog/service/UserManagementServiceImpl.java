@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.dnyanyog.dto.AddUserRequest;
 import org.dnyanyog.dto.AddUserResponse;
-import org.dnyanyog.dto.UserData;
+import org.dnyanyog.dto.DiscountRequest;
+import org.dnyanyog.dto.DiscountResponse;
 import org.dnyanyog.encryption.EncryptionService;
+import org.dnyanyog.entity.Discount;
 import org.dnyanyog.entity.Users;
 import org.dnyanyog.repo.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +72,44 @@ public class UserManagementServiceImpl implements UserManagementService {
 	public List<Users> getUser() {
 		return repo.findAll();
 	}
+	public Optional<DiscountResponse> addDiscount(DiscountRequest request) {
+        try {
+            DiscountResponse response = new DiscountResponse();
+
+            double discount = calculateDiscount(request.getAge());
+
+            if ("female".equalsIgnoreCase(request.getGender())) {
+                discount += 5;
+            }
+
+            saveDiscountInDatabase(request.getAge(), request.getGender(), discount);
+
+            response.setDiscountPercentage(discount);
+
+            return Optional.of(response);
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+    }
+
+    private void saveDiscountInDatabase(int age, String gender, double discount) {
+        
+        Discount discountEntity = new Discount();
+        discountEntity.setAge(age);
+        discountEntity.setGender(gender);
+        discountEntity.setDiscountPercentage(discount);
+
+         repo.save(discountEntity);
+    }
+
+    private double calculateDiscount(int age) {
+        if (age < 30) {
+            return 10;
+        } else if (age >= 30 && age < 60) {
+            return 5;
+        } else {
+            return 15;
+        }
+    }
 
 }

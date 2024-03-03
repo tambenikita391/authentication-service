@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.dnyanyog.dto.AddUserRequest;
 import org.dnyanyog.dto.AddUserResponse;
+import org.dnyanyog.dto.DiscountRequest;
+import org.dnyanyog.dto.DiscountResponse;
 import org.dnyanyog.entity.Users;
 import org.dnyanyog.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +20,30 @@ public class UserManagementController {
 	@Autowired
 	UserManagementService service;
 
-	@PostMapping("/auth/user/add")
+	@PostMapping(path = "/auth/user/add", consumes = { "application/json", "application/xml" }, produces = {
+			"application/json", "application/xml" })
 	public AddUserResponse addUser(@RequestBody AddUserRequest request) throws Exception {
 		return service.addUser(request);
 	}
 
-	@GetMapping("/auth/user/search/{userId}")
+	@GetMapping(path = "/auth/user/search/{userId}" ,
+			consumes = { "application/json", "application/xml" },
+			produces = {"application/json", "application/xml" })
+			
 	public AddUserResponse searchUser(@PathVariable int userId) {
 		return service.searchUser(userId);
 	}
 
-	@GetMapping("/auth/user/search")
+	@GetMapping(path = "/auth/user/search")
 	public List<Users> getuser() {
 		return service.getUser();
 	}
+	
+	 @PostMapping("/auth/discount/calculate_dicsount")
+	 public DiscountResponse addDiscount(@RequestBody DiscountRequest request) {
+	       
+	            return service.addDiscount(request).orElseThrow();
+	 }  
+	  
 
 }
