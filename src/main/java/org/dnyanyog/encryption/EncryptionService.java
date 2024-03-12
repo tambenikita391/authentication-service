@@ -17,44 +17,40 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EncryptionService {
-	private static final String SECRETE_KEY = "Q6DlhQYrJL4YHMsRKeAknQ=="; // encrypted key
-
-	private static final String ALGORITHM = "AES";
-
-	private static SecretKey secretKey;
-
-	private static Cipher cipher;
-
-	static {
-		secretKey = new SecretKeySpec(SECRETE_KEY.getBytes(StandardCharsets.UTF_8), ALGORITHM);
-
+	private String encryptAES(String input, String key) {
 		try {
-			cipher = Cipher.getInstance(ALGORITHM);
-		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
-			e.printStackTrace();
-		}
-		try {
-			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-		} catch (InvalidKeyException e) {
-			e.printStackTrace();
+			Cipher cipher = Cipher.getInstance("AES");
+			SecretKeySpec secretKeySpec = new SecretKeySpec(Base64.getDecoder().decode(key), "AES");
+			cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+			byte[] encryptedBytes = cipher.doFinal(input.getBytes(StandardCharsets.UTF_8));
+			return Base64.getEncoder().encodeToString(encryptedBytes);
+		} catch (Exception e) {
+			throw new RuntimeException("Error encrypting with AES", e);
 		}
 	}
 
-	public String encrypt(String data) throws Exception {
-		byte[] encryptedData = cipher.doFinal(data.getBytes());
-		return Base64.getEncoder().encodeToString(encryptedData);
+	private String generateAESKey() {
+		try {
+			KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+			keyGen.init(256);
+			SecretKey secretKey = keyGen.generateKey();
+			byte[] encodedKey = secretKey.getEncoded();
+			return Base64.getEncoder().encodeToString(encodedKey);
+		} catch (Exception e) {
+			throw new RuntimeException("Error generating AES key", e);
+		}
 	}
 
-	public static String decrypt(String encryptedData) throws Exception {
-		byte[] decryptedData = cipher.doFinal(Base64.getDecoder().decode(encryptedData));
-		return new String(decryptedData, StandardCharsets.UTF_8);
-	}
-
-	public static SecretKey generateAesKey() throws NoSuchAlgorithmException {
-		 int keyLength = 128;
-		KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-		keyGenerator.init(256);
-		return keyGenerator.generateKey();
+	public String decryptAES(String encryptedInput, String key) {
+		try {
+			Cipher cipher = Cipher.getInstance("AES");
+			SecretKeySpec secretKeySpec = new SecretKeySpec(Base64.getDecoder().decode(key), "AES");
+			cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+			byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedInput));
+			return new String(decryptedBytes, StandardCharsets.UTF_8);
+		} catch (Exception e) {
+			throw new RuntimeException("Error decrypting with AES", e);
+		}
 	}
 
 }

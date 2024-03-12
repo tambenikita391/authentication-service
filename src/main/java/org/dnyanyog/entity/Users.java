@@ -16,83 +16,86 @@ import jakarta.persistence.Table;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Users {
 
-	@GeneratedValue
-	@Id
-	@Column
-	private int user_code;
+  @GeneratedValue @Id @Column private int user_code;
 
-	@Column
-	private int user_id;
-	
-	@Column(name = "user_name")
-	private String userName;
+  @Column private int user_id;
 
-	@Column
-	private String password;
+  @Column(name = "user_name")
+  private String userName;
 
-	@Column
-	private String email_id;
+  @Column private String password;
 
-	@Column
-	private int age;
-	
-	public static Users getInstance() {
-		return new Users();
-	}
+  @Column private String email_id;
 
-	public String getUserName() {
-		return userName;
-	}
+  @Column private int age;
 
-	public Users setUserName(String userName) {
-		this.userName = userName;
-		
-		return this;
-	}
+  @Column private String aesKey;
 
-	public String getPassword() {
-		return password;
-	}
+  public static Users getInstance() {
+    return new Users();
+  }
 
-	public Users setPassword(String password) {
-		this.password = password;
-		return this;
-	}
+  public String getUserName() {
+    return userName;
+  }
 
-	public String getEmail_id() {
-		return email_id;
-	}
+  public Users setUserName(String userName) {
+    this.userName = userName;
 
-	public Users setEmail_id(String email_id) {
-		this.email_id = email_id;
-		return this;
-	}
+    return this;
+  }
 
-	public int getAge() {
-		return age;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-	public Users setAge(int age) {
-		this.age = age;
-		return this;
-	}
+  public Users setPassword(String password) {
+    this.password = password;
+    return this;
+  }
 
-	public int getUser_code() {
-		return user_code;
-	}
+  public String getEmail_id() {
+    return email_id;
+  }
 
-	public Users setUser_code(int user_code) {
-		this.user_code = user_code;
-		return this;
-	}
+  public Users setEmail_id(String email_id) {
+    this.email_id = email_id;
+    return this;
+  }
 
-	public int getUser_id() {
-		return user_id;
-	}
+  public int getAge() {
+    return age;
+  }
 
-	public Users setUser_id(int i) {
-		this.user_id = i;
-		return this;
-	}
+  public Users setAge(int age) {
+    this.age = age;
+    return this;
+  }
 
+  public int getUser_code() {
+    return user_code;
+  }
+
+  public Users setUser_code(int user_code) {
+    this.user_code = user_code;
+    return this;
+  }
+
+  public int getUser_id() {
+    return user_id;
+  }
+
+  public Users setUser_id(int i) {
+    this.user_id = i;
+    return this;
+  }
+
+  public String getAesKey() {
+    return aesKey;
+  }
+
+  public Users setAesKey(String aesKey) {
+    this.aesKey = aesKey;
+    return this;
+  }
 }

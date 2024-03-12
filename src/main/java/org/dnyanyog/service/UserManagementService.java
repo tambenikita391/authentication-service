@@ -7,10 +7,9 @@ import org.dnyanyog.dto.AddUserResponse;
 import org.dnyanyog.entity.Users;
 
 public interface UserManagementService {
-	public AddUserResponse addUser(AddUserRequest request) throws Exception;
-	
-	public AddUserResponse searchUser(int userId);
-	
-	public List<Users> getUser();
+  public AddUserResponse addUser(AddUserRequest request) throws Exception;
 
+  public AddUserResponse searchUser(int userId);
+
+  public List<Users> getUser();
 }
