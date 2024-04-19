@@ -1,0 +1,24 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+	<changeSet author="Nikita Tambe" id="20220717">
+		<insert schemaName="authentication_service_db" tableName="Auth">
+			<column name="id" value="1" />
+			<column name="username" value="Nikita" />
+			<column name="password" value="test123" />
+			<column name="email" value="nikita@gmail.com" />
+			<column name="age" value="21" />
+		</insert>
+	</changeSet>
+	<changeSet author="Nikita Tambe" id="20220717-1">
+		<insert schemaName="authentication_service_db" tableName="Auth">
+			<column name="id" value="2" />
+			<column name="username" value="Divya" />
+			<column name="password" value="div123" />
+			<column name="email" value="divya@gmail.com" />
+			<column name="age" value="16"></column>
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>
