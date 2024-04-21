@@ -3,7 +3,7 @@ package org.dnyanyog.controller;
 import java.util.List;
 import org.dnyanyog.dto.AddUserRequest;
 import org.dnyanyog.dto.AddUserResponse;
-import org.dnyanyog.entity.Users;
+import org.dnyanyog.entity.UsersDetails;
 import org.dnyanyog.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +33,7 @@ public class UserManagementController {
   }
 
   @GetMapping(path = "/auth/user/search")
-  public List<Users> getuser() {
+  public List<UsersDetails> getuser() {
     return service.getUser();
   }
 }

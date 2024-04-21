@@ -1,6 +1,6 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-<changeSet author="Nikita Tambe" id="202200718">
+<changeSet author="Nikita Tambe" id="2022007121">
 <sql stripComments="true"> CREATE SCHEMA IF NOT EXISTS authentication_service_db; </sql>
 </changeSet>
 

@@ -2,12 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-	<changeSet id="20220718" author="Nikita Tambe">
-		<createTable tableName="Auth" schemaName="authentication_service_db">
+	<changeSet id="20220721" author="Nikita Tambe">
+		<createTable tableName="UsersDetails" schemaName="authentication_service_db">
 			<column name="id" type="int">
 				<constraints primaryKey="true" />
 			</column>
-			<column name="username" type="varchar(255)">
+			<column name="userName" type="varchar(255)">
 				<constraints nullable="false" />
 			</column>
 			<column name="password" type="varchar(255)">

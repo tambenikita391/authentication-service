@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 public class LoginRequest {
   private String userName;
   private String password;
-  private String tempPassword;
 
   public String getUserName() {
     return userName;
@@ -22,13 +21,5 @@ public class LoginRequest {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getTempPassword() {
-    return tempPassword;
-  }
-
-  public void setTempPassword(String tempPassword) {
-    this.tempPassword = tempPassword;
   }
 }
