@@ -41,30 +41,5 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>build-image-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<image>
-						<name>
-							docker.io/zodgevv/authentication-service-HW:0.0.1-SNAPSHOT</name>
-						<publish>false</publish>
-					</image>
-				</configuration>
-			</plugin>
-
-
-		</plugins>
-	</build>
-
+	
 </project>
