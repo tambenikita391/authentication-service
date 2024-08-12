@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.niikita</groupId>
-	<artifactId>authentication-service:latest</artifactId>
+	<artifactId>authentication-service-HW</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -121,12 +121,14 @@
 					<images>
 						<image>
 							<name>
-								${image.registry}/${project.artifactId}:${image.tag}</name>
+								myregistry.example.com/myapp/authentication-service:latest</name>
 							<build>
-								<dockerFile>${project.basedir}/dockerfile</dockerFile>
-								<args>
-									<imageName>${project.artifactId}-latest</imageName>
-								</args>
+								<contextDir>${project.basedir}/src/main/docker</contextDir>
+								<dockerfile>
+									${project.basedir}/src/main/docker/Dockerfile</dockerfile>
+								<tags>
+									<tag>${project.version}</tag>
+								</tags>
 							</build>
 						</image>
 					</images>
