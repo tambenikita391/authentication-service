@@ -1,0 +1,27 @@
+name: Java CI with maven
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: checkout code
+         uses: actions/checkout@v3
+          
+       - name: Setup java
+         uses: actions/setup-java@v4
+         with:
+           java-version: '21'
+           distribution: 'temurin'
+
+       - name: check setup
+         run: 
+           java --version
+           ls -ltr
+
+       - name: Perform google formatter check
+         run: mvn com.spotify.fmt:fmt-maven-plugin:check
